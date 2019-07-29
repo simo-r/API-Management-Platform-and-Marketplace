@@ -1,0 +1,60 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="resource">
+            <h2><span jhiTranslate="marketplaceApp.apimanagerResource.detail.title">Resource</span> {{resource.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="marketplaceApp.apimanagerResource.owner">Owner</span></dt>
+                <dd>
+                    <span>{{resource.owner}}</span>
+                </dd>
+                <dt><span jhiTranslate="marketplaceApp.apimanagerResource.approver">Approver</span></dt>
+                <dd>
+                    <span>{{resource.approver}}</span>
+                </dd>
+                <dt><span jhiTranslate="marketplaceApp.apimanagerResource.description">Description</span></dt>
+                <dd>
+                    <span>{{resource.description}}</span>
+                </dd>
+                <dt><span jhiTranslate="marketplaceApp.apimanagerResource.redirectUrl">Redirect Url</span></dt>
+                <dd>
+                    <span>{{resource.redirectUrl}}</span>
+                </dd>
+                <dt><span jhiTranslate="marketplaceApp.apimanagerResource.status">Status</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'marketplaceApp.Status.' + resource.status}}">{{resource.status}}</span>
+                </dd>
+                <dt><span jhiTranslate="marketplaceApp.apimanagerResource.clientId">Client Id</span></dt>
+                <dd>
+                    <span>{{resource.clientId}}</span>
+                </dd>
+                <dt><span jhiTranslate="marketplaceApp.apimanagerResource.type">Type</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'marketplaceApp.ResourceType.' + resource.type}}">{{resource.type}}</span>
+                </dd>
+                <dt><span jhiTranslate="marketplaceApp.apimanagerResource.image">Image</span></dt>
+                <dd>
+                    <div *ngIf="resource.image">
+                        <a (click)="openFile(resource.imageContentType, resource.image)">
+                            <img [src]="'data:' + resource.imageContentType + ';base64,' + resource.image" style="max-width: 100%;" alt="resource image"/>
+                        </a>
+                        {{resource.imageContentType}}, {{byteSize(resource.image)}}
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/resource', resource.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

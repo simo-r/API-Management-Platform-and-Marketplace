@@ -1,0 +1,9 @@
+{
+  "marketplaceApp": {
+    "AuthType": {
+      "null": "",
+      "CNS": "CNS",
+      "SPID": "SPID"
+    }
+  }
+}

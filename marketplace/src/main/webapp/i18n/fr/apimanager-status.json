@@ -1,0 +1,12 @@
+{
+  "marketplaceApp": {
+    "Status": {
+      "null": "",
+      "DRAFT": "DRAFT",
+      "PENDING": "PENDING",
+      "PUBLISHED": "PUBLISHED",
+      "REJECTED": "REJECTED",
+      "ARCHIVED": "ARCHIVED"
+    }
+  }
+}

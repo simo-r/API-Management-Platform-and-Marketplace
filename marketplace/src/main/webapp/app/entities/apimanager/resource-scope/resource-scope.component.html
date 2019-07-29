@@ -1,0 +1,67 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="marketplaceApp.apimanagerResourceScope.home.title">Resource Scopes</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-resource-scope" [routerLink]="['/resource-scope/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="marketplaceApp.apimanagerResourceScope.home.createLabel">
+            Create new Resource Scope
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="alert alert-warning" *ngIf="resourceScopes?.length === 0">
+        <span jhiTranslate="marketplaceApp.apimanagerResourceScope.home.notFound">No resourceScopes found</span>
+    </div>
+    <div class="table-responsive" *ngIf="resourceScopes?.length > 0">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="name"><span jhiTranslate="marketplaceApp.apimanagerResourceScope.name">Name</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="authLevel"><span jhiTranslate="marketplaceApp.apimanagerResourceScope.authLevel">Auth Level</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="authType"><span jhiTranslate="marketplaceApp.apimanagerResourceScope.authType">Auth Type</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="resourceId"><span jhiTranslate="marketplaceApp.apimanagerResourceScope.resource">Resource</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+            <tr *ngFor="let resourceScope of resourceScopes ;trackBy: trackId">
+                <td><a [routerLink]="['/resource-scope', resourceScope.id, 'view' ]">{{resourceScope.id}}</a></td>
+                <td>{{resourceScope.name}}</td>
+                <td>{{resourceScope.authLevel}}</td>
+                <td jhiTranslate="{{'marketplaceApp.AuthType.' + resourceScope.authType}}">{{resourceScope.authType}}</td>
+                <td>
+                    <div *ngIf="resourceScope.resourceId">
+                        <a [routerLink]="['../resource', resourceScope.resourceId , 'view' ]" >{{resourceScope.resourceId}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/resource-scope', resourceScope.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/resource-scope', resourceScope.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', 'resource-scope', { outlets: { popup: resourceScope.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

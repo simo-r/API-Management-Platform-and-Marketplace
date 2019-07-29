@@ -1,0 +1,76 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="marketplaceApp.apimanagerResource.home.title">Resources</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-resource" [routerLink]="['/resource/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="marketplaceApp.apimanagerResource.home.createLabel">
+            Create new Resource
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="alert alert-warning" *ngIf="resources?.length === 0">
+        <span jhiTranslate="marketplaceApp.apimanagerResource.home.notFound">No resources found</span>
+    </div>
+    <div class="table-responsive" *ngIf="resources?.length > 0">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="owner"><span jhiTranslate="marketplaceApp.apimanagerResource.owner">Owner</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="approver"><span jhiTranslate="marketplaceApp.apimanagerResource.approver">Approver</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="description"><span jhiTranslate="marketplaceApp.apimanagerResource.description">Description</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="redirectUrl"><span jhiTranslate="marketplaceApp.apimanagerResource.redirectUrl">Redirect Url</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="status"><span jhiTranslate="marketplaceApp.apimanagerResource.status">Status</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="clientId"><span jhiTranslate="marketplaceApp.apimanagerResource.clientId">Client Id</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="type"><span jhiTranslate="marketplaceApp.apimanagerResource.type">Type</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="image"><span jhiTranslate="marketplaceApp.apimanagerResource.image">Image</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+            <tr *ngFor="let resource of resources ;trackBy: trackId">
+                <td><a [routerLink]="['/resource', resource.id, 'view' ]">{{resource.id}}</a></td>
+                <td>{{resource.owner}}</td>
+                <td>{{resource.approver}}</td>
+                <td>{{resource.description}}</td>
+                <td>{{resource.redirectUrl}}</td>
+                <td jhiTranslate="{{'marketplaceApp.Status.' + resource.status}}">{{resource.status}}</td>
+                <td>{{resource.clientId}}</td>
+                <td jhiTranslate="{{'marketplaceApp.ResourceType.' + resource.type}}">{{resource.type}}</td>
+                <td>
+                    <a *ngIf="resource.image" (click)="openFile(resource.imageContentType, resource.image)">
+                        <img [src]="'data:' + resource.imageContentType + ';base64,' + resource.image" style="max-height: 30px;" alt="resource image"/>
+                    </a>
+                    <span *ngIf="resource.image">{{resource.imageContentType}}, {{byteSize(resource.image)}}</span>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/resource', resource.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/resource', resource.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', 'resource', { outlets: { popup: resource.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

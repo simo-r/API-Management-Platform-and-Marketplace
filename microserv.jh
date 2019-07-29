@@ -1,0 +1,88 @@
+application{
+	config{
+    	baseName marketplace,
+        packageName it.tai.dev.marketplace,
+        applicationType gateway,
+        authenticationType jwt,
+        databaseType sql,
+        devDatabaseType h2Memory,
+        prodDatabaseType mysql,
+        serviceDiscoveryType eureka,
+        buildTool maven,
+        cacheProvider hazelcast,
+        clientFramework angularX
+    }
+    entities *
+}
+
+application {
+	config{
+    	baseName apimanager,
+        packageName it.tai.dev.apimanager,
+        applicationType	microservice,
+        authenticationType jwt,
+        databaseType sql,
+        devDatabaseType h2Memory,
+        prodDatabaseType mysql,
+        serviceDiscoveryType eureka,
+        enableHibernateCache true,
+        serverPort 8081,
+        buildTool maven,
+        skipUserManagement true,
+        cacheProvider hazelcast
+
+  }
+  entities *
+}
+
+
+
+enum ResourceType{
+	API,
+    CLIENT
+}
+
+enum Status{
+	DRAFT,
+    PENDING,
+    PUBLISHED,
+    REJECTED,
+    ARCHIVED
+}
+
+enum AuthType{
+	CNS,
+    SPID
+}
+
+entity Resource{
+	owner String required,
+	approver String required,
+    description String required ,
+    redirectUrl String required,
+    status Status required,
+    clientId String required unique, /* nome- Check a mano che sia unico */
+    type ResourceType required,
+    image ImageBlob
+}
+
+entity ResourceScope{
+	name String required, /* Check a mano che sia unico tra i resource scope del resource associato */
+    authLevel Integer required,
+    authType AuthType required,
+}
+
+entity UsedResourceScope{
+}
+
+relationship OneToMany{
+	Resource{scopes} to ResourceScope{resource required} /* Il required non c'è per ora /
+ 	/* Obbligo l'aggiunta dei campi */
+    Resource{usedBy required} to UsedResourceScope{resource required} 
+    ResourceScope{usedBy required} to UsedResourceScope{scope required} 
+}
+
+dto all with mapstruct
+service all with serviceImpl
+paginate all with infinite-scroll
+microservice * with apimanager

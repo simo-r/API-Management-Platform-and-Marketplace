@@ -1,0 +1,30 @@
+{
+  "marketplaceApp": {
+    "apimanagerResourceScope": {
+      "home": {
+        "title": "ResourceScopes",
+        "createLabel": "Créer un nouveau Resource Scope",
+        "createOrEditLabel": "Créer ou éditer un Resource Scope",
+        "notFound": "Aucun Resource Scope trouvé"
+      },
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Resource Scope {{ id }} ?"
+      },
+      "detail": {
+        "title": "Resource Scope"
+      },
+      "name": "Name",
+      "authLevel": "Auth Level",
+      "authType": "Auth Type",
+      "usedBy": "Used By",
+      "resource": "Resource"
+    }
+  },
+  "apimanagerApp": {
+    "apimanagerResourceScope": {
+      "created": "Un nouveau Resource Scope a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Resource Scope avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Resource Scope avec l'identifiant {{ param }} a été supprimé"
+    }
+  }
+}

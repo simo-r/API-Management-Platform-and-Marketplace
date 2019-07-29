@@ -1,0 +1,42 @@
+{
+  "generator-jhipster": {
+    "databaseType": "sql",
+    "devDatabaseType": "h2Memory",
+    "enableHibernateCache": true,
+    "enableSwaggerCodegen": false,
+    "enableTranslation": true,
+    "jhiPrefix": "jhi",
+    "languages": [
+      "en",
+      "fr"
+    ],
+    "messageBroker": false,
+    "nativeLanguage": "en",
+    "packageName": "it.tai.dev.apimanager",
+    "packageFolder": "it/tai/dev/apimanager",
+    "prodDatabaseType": "mysql",
+    "searchEngine": false,
+    "serviceDiscoveryType": "eureka",
+    "skipClient": true,
+    "testFrameworks": [],
+    "websocket": false,
+    "baseName": "apimanager",
+    "applicationType": "microservice",
+    "authenticationType": "jwt",
+    "serverPort": "8081",
+    "buildTool": "maven",
+    "skipUserManagement": true,
+    "cacheProvider": "hazelcast",
+    "jhipsterVersion": "6.1.0",
+    "clientPackageManager": "npm",
+    "jwtSecretKey": "OTBkZWI1NTA2NmM0MmNlNmIzMjc2MmYzYjY5ZGMzMDU2ZTg1NDE3MTJjMTdjOGI1MGM2MDI0ZWU0M2UzMmJjNzAxOGNhMDg4MzM5M2U3NDJlYThkMTMxZTU5ODNkMGQ1ZWM1ZTM5NWIxMWZjNWIwMzA5OWJmZjgwZmI3YjYxNjg=",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": []
+  },
+  "entities": [
+    "Resource",
+    "ResourceScope",
+    "UsedResourceScope"
+  ]
+}

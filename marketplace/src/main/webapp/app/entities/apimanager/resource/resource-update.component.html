@@ -1,0 +1,125 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-resource-heading" jhiTranslate="marketplaceApp.apimanagerResource.home.createOrEditLabel">Create or edit a Resource</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!editForm.get('id').value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="marketplaceApp.apimanagerResource.owner" for="field_owner">Owner</label>
+                    <input type="text" class="form-control" name="owner" id="field_owner"
+                           formControlName="owner"/>
+                    <div *ngIf="editForm.get('owner').invalid && (editForm.get('owner').dirty || editForm.get('owner').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('owner').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="marketplaceApp.apimanagerResource.approver" for="field_approver">Approver</label>
+                    <input type="text" class="form-control" name="approver" id="field_approver"
+                           formControlName="approver"/>
+                    <div *ngIf="editForm.get('approver').invalid && (editForm.get('approver').dirty || editForm.get('approver').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('approver').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="marketplaceApp.apimanagerResource.description" for="field_description">Description</label>
+                    <input type="text" class="form-control" name="description" id="field_description"
+                           formControlName="description"/>
+                    <div *ngIf="editForm.get('description').invalid && (editForm.get('description').dirty || editForm.get('description').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('description').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="marketplaceApp.apimanagerResource.redirectUrl" for="field_redirectUrl">Redirect Url</label>
+                    <input type="text" class="form-control" name="redirectUrl" id="field_redirectUrl"
+                           formControlName="redirectUrl"/>
+                    <div *ngIf="editForm.get('redirectUrl').invalid && (editForm.get('redirectUrl').dirty || editForm.get('redirectUrl').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('redirectUrl').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="marketplaceApp.apimanagerResource.status" for="field_status">Status</label>
+                    <select class="form-control" name="status" formControlName="status" id="field_status">
+                        <option value="DRAFT">{{'marketplaceApp.Status.DRAFT' | translate}}</option>
+                        <option value="PENDING">{{'marketplaceApp.Status.PENDING' | translate}}</option>
+                        <option value="PUBLISHED">{{'marketplaceApp.Status.PUBLISHED' | translate}}</option>
+                        <option value="REJECTED">{{'marketplaceApp.Status.REJECTED' | translate}}</option>
+                        <option value="ARCHIVED">{{'marketplaceApp.Status.ARCHIVED' | translate}}</option>
+                    </select>
+                    <div *ngIf="editForm.get('status').invalid && (editForm.get('status').dirty || editForm.get('status').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('status').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="marketplaceApp.apimanagerResource.clientId" for="field_clientId">Client Id</label>
+                    <input type="text" class="form-control" name="clientId" id="field_clientId"
+                           formControlName="clientId"/>
+                    <div *ngIf="editForm.get('clientId').invalid && (editForm.get('clientId').dirty || editForm.get('clientId').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('clientId').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="marketplaceApp.apimanagerResource.type" for="field_type">Type</label>
+                    <select class="form-control" name="type" formControlName="type" id="field_type">
+                        <option value="API">{{'marketplaceApp.ResourceType.API' | translate}}</option>
+                        <option value="CLIENT">{{'marketplaceApp.ResourceType.CLIENT' | translate}}</option>
+                    </select>
+                    <div *ngIf="editForm.get('type').invalid && (editForm.get('type').dirty || editForm.get('type').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('type').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="marketplaceApp.apimanagerResource.image" for="field_image">Image</label>
+                    <div>
+                        <img [src]="'data:' + editForm.get('imageContentType').value + ';base64,' + editForm.get('image').value" style="max-height: 100px;" *ngIf="editForm.get('image').value" alt="resource image"/>
+                        <div *ngIf="editForm.get('image').value" class="form-text text-danger clearfix">
+                            <span class="pull-left">{{editForm.get('imageContentType').value}}, {{byteSize(editForm.get('image').value)}}</span>
+                            <button type="button" (click)="clearInputImage('image', 'imageContentType', 'fileImage')" class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon [icon]="'times'"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_image" (change)="setFileData($event, 'image', true)" accept="image/*" jhiTranslate="entity.action.addimage"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="image" id="field_image"
+                           formControlName="image"/>
+                    <input type="hidden" class="form-control" name="imageContentType" id="field_imageContentType"
+                           formControlName="imageContentType" />
+                </div>
+
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

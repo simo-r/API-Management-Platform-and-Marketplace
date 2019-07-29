@@ -1,0 +1,35 @@
+{
+    "name": "UsedResourceScope",
+    "fields": [],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "resource",
+            "otherEntityRelationshipName": "usedBy",
+            "relationshipValidateRules": "required",
+            "relationshipName": "resource",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "resourceScope",
+            "otherEntityRelationshipName": "usedBy",
+            "relationshipValidateRules": "required",
+            "relationshipName": "scope",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190729070917",
+    "entityTableName": "used_resource_scope",
+    "dto": "mapstruct",
+    "pagination": "infinite-scroll",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": [
+        "marketplace",
+        "apimanager"
+    ],
+    "microserviceName": "apimanager"
+}

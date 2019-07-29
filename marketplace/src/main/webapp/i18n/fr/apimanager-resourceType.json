@@ -1,0 +1,9 @@
+{
+  "marketplaceApp": {
+    "ResourceType": {
+      "null": "",
+      "API": "API",
+      "CLIENT": "CLIENT"
+    }
+  }
+}

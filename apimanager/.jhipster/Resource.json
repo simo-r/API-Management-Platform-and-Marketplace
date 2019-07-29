@@ -1,0 +1,90 @@
+{
+    "name": "Resource",
+    "fields": [
+        {
+            "fieldName": "owner",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "approver",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "description",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "redirectUrl",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "status",
+            "fieldType": "Status",
+            "fieldValues": "DRAFT,PENDING,PUBLISHED,REJECTED,ARCHIVED",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "clientId",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "unique"
+            ]
+        },
+        {
+            "fieldName": "type",
+            "fieldType": "ResourceType",
+            "fieldValues": "API,CLIENT",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "image",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "resourceScope",
+            "otherEntityRelationshipName": "resource",
+            "relationshipName": "scopes"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "usedResourceScope",
+            "otherEntityRelationshipName": "resource",
+            "relationshipValidateRules": "required",
+            "relationshipName": "usedBy"
+        }
+    ],
+    "changelogDate": "20190729070915",
+    "entityTableName": "resource",
+    "dto": "mapstruct",
+    "pagination": "infinite-scroll",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": [
+        "marketplace",
+        "apimanager"
+    ],
+    "microserviceName": "apimanager"
+}

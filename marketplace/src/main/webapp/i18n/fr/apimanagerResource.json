@@ -1,0 +1,35 @@
+{
+  "marketplaceApp": {
+    "apimanagerResource": {
+      "home": {
+        "title": "Resources",
+        "createLabel": "Créer un nouveau Resource",
+        "createOrEditLabel": "Créer ou éditer un Resource",
+        "notFound": "Aucun Resource trouvé"
+      },
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Resource {{ id }} ?"
+      },
+      "detail": {
+        "title": "Resource"
+      },
+      "owner": "Owner",
+      "approver": "Approver",
+      "description": "Description",
+      "redirectUrl": "Redirect Url",
+      "status": "Status",
+      "clientId": "Client Id",
+      "type": "Type",
+      "image": "Image",
+      "scopes": "Scopes",
+      "usedBy": "Used By"
+    }
+  },
+  "apimanagerApp": {
+    "apimanagerResource": {
+      "created": "Un nouveau Resource a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Resource avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Resource avec l'identifiant {{ param }} a été supprimé"
+    }
+  }
+}

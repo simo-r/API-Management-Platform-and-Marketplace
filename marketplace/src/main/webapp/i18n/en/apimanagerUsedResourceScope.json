@@ -1,0 +1,27 @@
+{
+  "marketplaceApp": {
+    "apimanagerUsedResourceScope": {
+      "home": {
+        "title": "Used Resource Scopes",
+        "createLabel": "Create a new Used Resource Scope",
+        "createOrEditLabel": "Create or edit a Used Resource Scope",
+        "notFound": "No Used Resource Scope found"
+      },
+      "delete": {
+        "question": "Are you sure you want to delete Used Resource Scope {{ id }}?"
+      },
+      "detail": {
+        "title": "Used Resource Scope"
+      },
+      "resource": "Resource",
+      "scope": "Scope"
+    }
+  },
+  "apimanagerApp": {
+    "apimanagerUsedResourceScope": {
+      "created": "A new Used Resource Scope is created with identifier {{ param }}",
+      "updated": "A Used Resource Scope is updated with identifier {{ param }}",
+      "deleted": "A Used Resource Scope is deleted with identifier {{ param }}"
+    }
+  }
+}

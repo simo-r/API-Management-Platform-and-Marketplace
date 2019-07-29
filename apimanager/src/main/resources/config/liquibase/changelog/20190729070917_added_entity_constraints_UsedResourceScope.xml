@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <!--
+        Added the constraints for entity UsedResourceScope.
+    -->
+    <changeSet id="20190729070917-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="resource_id"
+                                 baseTableName="used_resource_scope"
+                                 constraintName="fk_used_resource_scope_resource_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="resource"/>
+
+        <addForeignKeyConstraint baseColumnNames="scope_id"
+                                 baseTableName="used_resource_scope"
+                                 constraintName="fk_used_resource_scope_scope_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="resource_scope"/>
+
+    </changeSet>
+</databaseChangeLog>

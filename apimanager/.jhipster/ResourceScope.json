@@ -1,0 +1,57 @@
+{
+    "name": "ResourceScope",
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "authLevel",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "authType",
+            "fieldType": "AuthType",
+            "fieldValues": "CNS,SPID",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "usedResourceScope",
+            "otherEntityRelationshipName": "scope",
+            "relationshipValidateRules": "required",
+            "relationshipName": "usedBy"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "resource",
+            "otherEntityRelationshipName": "scopes",
+            "relationshipValidateRules": "required",
+            "relationshipName": "resource",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190729070916",
+    "entityTableName": "resource_scope",
+    "dto": "mapstruct",
+    "pagination": "infinite-scroll",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": [
+        "marketplace",
+        "apimanager"
+    ],
+    "microserviceName": "apimanager"
+}

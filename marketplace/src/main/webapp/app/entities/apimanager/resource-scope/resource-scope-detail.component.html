@@ -1,0 +1,41 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="resourceScope">
+            <h2><span jhiTranslate="marketplaceApp.apimanagerResourceScope.detail.title">Resource Scope</span> {{resourceScope.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="marketplaceApp.apimanagerResourceScope.name">Name</span></dt>
+                <dd>
+                    <span>{{resourceScope.name}}</span>
+                </dd>
+                <dt><span jhiTranslate="marketplaceApp.apimanagerResourceScope.authLevel">Auth Level</span></dt>
+                <dd>
+                    <span>{{resourceScope.authLevel}}</span>
+                </dd>
+                <dt><span jhiTranslate="marketplaceApp.apimanagerResourceScope.authType">Auth Type</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'marketplaceApp.AuthType.' + resourceScope.authType}}">{{resourceScope.authType}}</span>
+                </dd>
+                <dt><span jhiTranslate="marketplaceApp.apimanagerResourceScope.resource">Resource</span></dt>
+                <dd>
+                    <div *ngIf="resourceScope.resourceId">
+                        <a [routerLink]="['/resource', resourceScope.resourceId, 'view']">{{resourceScope.resourceId}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/resource-scope', resourceScope.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>
